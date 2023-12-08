@@ -122,7 +122,7 @@ function App() {
       ))}
       */}
 
-      <h2>Esercizio 3</h2>
+      <h2>Esercizio 3 qwerty</h2>
 
       {objectList.map((e, i) => (
         <section key={i}>
