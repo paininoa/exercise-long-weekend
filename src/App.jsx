@@ -7,9 +7,9 @@ Crea un componente CustomList che accetta i seguenti props:
 Esercizio 2:
 Crea un array di oggetti (allLists), in cui ciascun oggetto ha questa struttura:
 {
-   title: "Invitati"
+   title: "Invitati",
    type: "ul",
-   list: ["Tizio", "Caio]
+   list: ["Tizio", "Caio"]
 }
 Per ogni oggetto, renderizza un div che contiene un titolo con contenuto 'title' e 
 un CustomList con type e list nei props.
@@ -65,80 +65,170 @@ import { useState } from "react";
 import "./App.css";
 import CustomList from "./CustomList/CustomList";
 
-const allLists = [
+// PROVA CON LAURA
+
+const testList = ["laura", "alex", "alessio"];
+let allLists = [
   {
     title: "Invitati",
     type: "ul",
-    list: ["Tizio", "Caio"],
+    list: ["Ugo", "Anna"],
+    userValue: "",
   },
   {
-    title: "Partecipanti",
+    title: "Non invitati",
     type: "ol",
     list: ["Tizio", "Caio"],
+    userValue: "",
   },
   {
-    title: "Altri",
-    type: "ol",
-    list: ["Tizio", "Caio"],
+    title: "Organizzatori",
+    type: "ul",
+    list: ["Mario", "Gianna"],
+    userValue: "",
   },
 ];
 
 function App() {
-  const [objectList, setObjectList] = useState(allLists);
-  const [inputValues, setInputValues] = useState([]);
-  // const [newItem, setNewItem] = useState(new Array(objectList.length).map(() => ""));
-
-  const handleOnChange = (inputIndex, newValue) => {
-    let newInputValues = [...inputValues];
-    newInputValues[inputIndex] = newValue;
-    setInputValues(newInputValues);
-  };
-
-  const handleAddClick = (sectionIndex) => {
-    let newObjectList = [...objectList];
-    newObjectList[sectionIndex].list.push(inputValues[sectionIndex]);
-    setObjectList(newObjectList);
-    handleOnChange(sectionIndex, "");
-  };
+  const [newAllLists, setNewAllLists] = useState(allLists);
 
   return (
     <>
-      <h1>
-        07/12 <br />
-        exercise-long-weekend
-      </h1>
-      {/*
-      <h2>Esercizio 1</h2>
-      <CustomList type="ul" list={listaProva} />
-      <CustomList type="ol" list={["ciao", "hey", "piero"]} />
+      <h1>Esercizio con Laura e Alex</h1>
+      <h2>Parte 1</h2>
+      <CustomList type={"ul"} list={testList} />
+      <CustomList type={"ol"} list={["Ugo", "Gianni", "Piero"]} />
 
-      <h2>Esercizio 2</h2>
+      <h2>Parte 2</h2>
+      {allLists.map((listObject, index) => {
+        return (
+          <div key={index}>
+            <h3>{listObject.title}</h3>
+            <CustomList type={listObject.type} list={listObject.list} />
+          </div>
+        );
+      })}
 
-      {allLists.map((e, i) => (
-        <section key={i}>
-          <div>{e.title}</div>
-          <CustomList type={e.type} list={e.list} />
-        </section>
-      ))}
-      */}
+      <h2>Parte 3</h2>
+      {allLists.map((listObject, index) => {
+        return (
+          <div key={index}>
+            <h3>{listObject.title}</h3>
 
-      <h2>Esercizio 3 qwerty</h2>
+            <div>
+              <input
+                type="text"
+                value={listObject.userValue}
+                onChange={(e) => {
+                  const finalList = [...newAllLists];
+                  const finalObject = finalList[index];
+                  finalObject.userValue = e.target.value;
+                  setNewAllLists(finalList);
+                }}
+              />
+              <button
+                onClick={() => {
+                  const finalList = [...newAllLists];
+                  const finalObject = finalList[index];
+                  finalObject.list = [
+                    ...finalObject.list,
+                    finalObject.userValue,
+                  ];
+                  finalObject.userValue = "";
 
-      {objectList.map((e, i) => (
-        <section key={i}>
-          <div>{e.title}</div>
-          <CustomList type={e.type} list={e.list} />
+                  setNewAllLists(finalList);
+                }}
+              >
+                Aggiungi
+              </button>
+            </div>
 
-          <input
-            type="text"
-            value={inputValues[i] ?? ""}
-            onChange={(e) => handleOnChange(i, e.target.value)}
-          />
-          <button onClick={() => handleAddClick(i)}>Aggiungi</button>
-        </section>
-      ))}
+            <CustomList type={listObject.type} list={listObject.list} />
+          </div>
+        );
+      })}
     </>
   );
 }
 
 export default App;
+
+//ESERCIZIO FATTO IN CLASSE E CON MIO FRATELLO
+
+// function App() {
+//   const allLists = [
+//     {e
+//       title: "Invitati",
+//       type: "ul",
+//       list: ["Tizio", "Caio"],
+//     },
+//     {
+//       title: "Partecipanti",
+//       type: "ol",
+//       list: ["Tizio", "Caio"],
+//     },
+//     {
+//       title: "Altri",
+//       type: "ol",
+//       list: ["Tizio", "Caio"],
+//     },
+//   ];
+
+//   const [objectList, setObjectList] = useState(allLists);
+//   const [inputValues, setInputValues] = useState([]);
+//   // const [newItem, setNewItem] = useState(new Array(objectList.length).map(() => ""));
+
+//   const handleOnChange = (inputIndex, newValue) => {
+//     let newInputValues = [...inputValues];
+//     newInputValues[inputIndex] = newValue;
+//     setInputValues(newInputValues);
+//   };
+
+//   const handleAddClick = (sectionIndex) => {
+//     let newObjectList = [...objectList];
+//     newObjectList[sectionIndex].list.push(inputValues[sectionIndex]);
+//     setObjectList(newObjectList);
+//     handleOnChange(sectionIndex, "");
+//   };
+
+//   return (
+//     <>
+//       <h1>
+//         07/12 <br />
+//         exercise-long-weekend
+//       </h1>
+//       {/*
+//       <h2>Esercizio 1</h2>
+//       <CustomList type="ul" list={listaProva} />
+//       <CustomList type="ol" list={["ciao", "hey", "piero"]} />
+
+//       <h2>Esercizio 2</h2>
+
+//       {allLists.map((e, i) => (
+//         <section key={i}>
+//           <div>{e.title}</div>
+//           <CustomList type={e.type} list={e.list} />
+//         </section>
+//       ))}
+//       */}
+
+//       <h2>Esercizio 3 qwerty</h2>
+
+//       {objectList.map((e, i) => (
+//         <section key={i}>
+//           <div>{e.title}</div>
+//           <CustomList type={e.type} list={e.list} />
+
+//           <input
+//             type="text"
+//             value={inputValues[i] ?? ""}
+//             onChange={(e) => handleOnChange(i, e.target.value)}
+//           />
+//           <button onClick={() => handleAddClick(i)}>Aggiungi</button>
+//         </section>
+//       ))}
+//     </>
+//   );
+// }
+
+// export default App;
