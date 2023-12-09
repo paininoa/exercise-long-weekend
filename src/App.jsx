@@ -61,127 +61,41 @@ eseguita passando solo il value non l'intero evento
 */
 }
 
-import { useState } from "react";
-import "./App.css";
-import CustomList from "./CustomList/CustomList";
+// // TERZA VOLTA DA SOLO (1 E 2) -------------------------------------------------------
 
-function App() {
-  const listExample = ["anna", "antonio", "andrea"];
-  const allLists = [
-    {
-      title: "Invitati",
-      type: "ul",
-      list: ["Tizio", "Caio"],
-    },
-    {
-      title: "Invitati2",
-      type: "ol",
-      list: ["Tizio", "Caio"],
-    },
-    {
-      title: "Invitati3",
-      type: "ul",
-      list: ["Tizio", "Caio"],
-    },
-  ];
-
-  return (
-    <>
-      <CustomList type={"ol"} list={listExample} />
-
-      {allLists.map((obj, objIndex) => {
-        return (
-          <div key={`obj${objIndex}`}>
-            <h3>{obj.title}</h3>
-            <CustomList type={obj.type} list={obj.list} />
-          </div>
-        );
-      })}
-    </>
-  );
-}
-
-export default App;
-
-// PROVA CON LAURA E ALEX COMPLETATO FINO AD EX 3 -------------------------------------------------------
-
-// const testList = ["laura", "alex", "alessio"];
-// let allLists = [
-//   {
-//     title: "Invitati",
-//     type: "ul",
-//     list: ["Ugo", "Anna"],
-//     userValue: "",
-//   },
-//   {
-//     title: "Non invitati",
-//     type: "ol",
-//     list: ["Tizio", "Caio"],
-//     userValue: "",
-//   },
-//   {
-//     title: "Organizzatori",
-//     type: "ul",
-//     list: ["Mario", "Gianna"],
-//     userValue: "",
-//   },
-// ];
+// import { useState } from "react";
+// import "./App.css";
+// import CustomList from "./CustomList/CustomList";
 
 // function App() {
-//   const [newAllLists, setNewAllLists] = useState(allLists);
+//   const listExample = ["anna", "antonio", "andrea"];
+//   const allLists = [
+//     {
+//       title: "Invitati",
+//       type: "ul",
+//       list: ["Tizio", "Caio"],
+//     },
+//     {
+//       title: "Invitati2",
+//       type: "ol",
+//       list: ["Tizio", "Caio"],
+//     },
+//     {
+//       title: "Invitati3",
+//       type: "ul",
+//       list: ["Tizio", "Caio"],
+//     },
+//   ];
 
 //   return (
 //     <>
-//       <h1>Esercizio con Laura e Alex</h1>
-//       <h2>Parte 1</h2>
-//       <CustomList type={"ul"} list={testList} />
-//       <CustomList type={"ol"} list={["Ugo", "Gianni", "Piero"]} />
+//       <CustomList type={"ol"} list={listExample} />
 
-//       <h2>Parte 2</h2>
-//       {allLists.map((listObject, index) => {
+//       {allLists.map((obj, objIndex) => {
 //         return (
-//           <div key={index}>
-//             <h3>{listObject.title}</h3>
-//             <CustomList type={listObject.type} list={listObject.list} />
-//           </div>
-//         );
-//       })}
-
-//       <h2>Parte 3</h2>
-//       {allLists.map((listObject, index) => {
-//         return (
-//           <div key={index}>
-//             <h3>{listObject.title}</h3>
-
-//             <div>
-//               <input
-//                 type="text"
-//                 value={listObject.userValue}
-//                 onChange={(e) => {
-//                   const finalList = [...newAllLists];
-//                   const finalObject = finalList[index];
-//                   finalObject.userValue = e.target.value;
-//                   setNewAllLists(finalList);
-//                 }}
-//               />
-//               <button
-//                 onClick={() => {
-//                   const finalList = [...newAllLists];
-//                   const finalObject = finalList[index];
-//                   finalObject.list = [
-//                     ...finalObject.list,
-//                     finalObject.userValue,
-//                   ];
-//                   finalObject.userValue = "";
-
-//                   setNewAllLists(finalList);
-//                 }}
-//               >
-//                 Aggiungi
-//               </button>
-//             </div>
-
-//             <CustomList type={listObject.type} list={listObject.list} />
+//           <div key={`obj${objIndex}`}>
+//             <h3>{obj.title}</h3>
+//             <CustomList type={obj.type} list={obj.list} />
 //           </div>
 //         );
 //       })}
@@ -190,6 +104,98 @@ export default App;
 // }
 
 // export default App;
+
+// PROVA CON LAURA E ALEX COMPLETATO FINO AD EX 3 -------------------------------------------------------
+
+import { useState } from "react";
+import "./App.css";
+import CustomList from "./CustomList/CustomList";
+
+const testList = ["laura", "alex", "alessio"];
+let allLists = [
+  {
+    title: "Invitati",
+    type: "ul",
+    list: ["Ugo", "Anna"],
+    userValue: "",
+  },
+  {
+    title: "Non invitati",
+    type: "ol",
+    list: ["Tizio", "Caio"],
+    userValue: "",
+  },
+  {
+    title: "Organizzatori",
+    type: "ul",
+    list: ["Mario", "Gianna"],
+    userValue: "",
+  },
+];
+
+function App() {
+  const [objectArray, setObjectArray] = useState(allLists);
+
+  return (
+    <>
+      <h1>Esercizio con Laura e Alex</h1>
+      <h2>Parte 1</h2>
+      <CustomList type={"ul"} list={testList} />
+      <CustomList type={"ol"} list={["Ugo", "Gianni", "Piero"]} />
+
+      <h2>Parte 2</h2>
+      {allLists.map((listObject, index) => {
+        return (
+          <div key={index}>
+            <h3>{listObject.title}</h3>
+            <CustomList type={listObject.type} list={listObject.list} />
+          </div>
+        );
+      })}
+
+      <h2>Parte 3</h2>
+      {allLists.map((listObject, index) => {
+        return (
+          <div key={index}>
+            <h3>{listObject.title}</h3>
+
+            <div>
+              <input
+                type="text"
+                value={listObject.userValue}
+                onChange={(e) => {
+                  const finalList = [...objectArray];
+                  const finalObject = finalList[index];
+                  finalObject.userValue = e.target.value;
+                  setObjectArray(finalList);
+                }}
+              />
+              <button
+                onClick={() => {
+                  const finalList = [...objectArray];
+                  const finalObject = finalList[index];
+                  finalObject.list = [
+                    ...finalObject.list,
+                    finalObject.userValue,
+                  ];
+                  finalObject.userValue = "";
+
+                  setObjectArray(finalList);
+                }}
+              >
+                Aggiungi
+              </button>
+            </div>
+
+            <CustomList type={listObject.type} list={listObject.list} />
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+export default App;
 
 //ESERCIZIO FATTO IN CLASSE E CON MIO FRATELLO (il terzo) ---------------------------------------
 
