@@ -219,6 +219,50 @@ function App() {
           </div>
         );
       })}
+
+      <h2>Parte 4</h2>
+      <CustomList
+        type="ul"
+        list={["Elemento 1", "Elemento 1"]}
+        buttons={["click here", "click here as well"]}
+      />
+      {allLists.map((listObject, index) => {
+        return (
+          <div key={index}>
+            <h3>{listObject.title}</h3>
+
+            <div>
+              <input
+                type="text"
+                value={listObject.userValue}
+                onChange={(e) => {
+                  const finalList = [...objectArray];
+                  const finalObject = finalList[index];
+                  finalObject.userValue = e.target.value;
+                  setObjectArray(finalList);
+                }}
+              />
+              <button
+                onClick={() => {
+                  const finalList = [...objectArray];
+                  const finalObject = finalList[index];
+                  finalObject.list = [
+                    ...finalObject.list,
+                    finalObject.userValue,
+                  ];
+                  finalObject.userValue = "";
+
+                  setObjectArray(finalList);
+                }}
+              >
+                Aggiungi
+              </button>
+            </div>
+
+            <CustomList type={listObject.type} list={listObject.list} />
+          </div>
+        );
+      })}
     </>
   );
 }
