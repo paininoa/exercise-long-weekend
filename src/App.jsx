@@ -61,7 +61,7 @@ eseguita passando solo il value non l'intero evento
 */
 }
 
-// // TERZA VOLTA DA SOLO (1 E 2) -------------------------------------------------------
+// // TERZA VOLTA DA SOLO (1 2 e 3) -------------------------------------------------------
 
 // import { useState } from "react";
 // import "./App.css";
@@ -74,18 +74,23 @@ eseguita passando solo il value non l'intero evento
 //       title: "Invitati",
 //       type: "ul",
 //       list: ["Tizio", "Caio"],
+//       newItem: "",
 //     },
 //     {
 //       title: "Invitati2",
 //       type: "ol",
 //       list: ["Tizio", "Caio"],
+//       newItem: "",
 //     },
 //     {
 //       title: "Invitati3",
 //       type: "ul",
 //       list: ["Tizio", "Caio"],
+//       newItem: "",
 //     },
 //   ];
+
+//   const [objArray, setObjArray] = useState(allLists);
 
 //   return (
 //     <>
@@ -96,6 +101,29 @@ eseguita passando solo il value non l'intero evento
 //           <div key={`obj${objIndex}`}>
 //             <h3>{obj.title}</h3>
 //             <CustomList type={obj.type} list={obj.list} />
+//             <div>
+//               <input
+//                 type="text"
+//                 value={obj.newItem}
+//                 onChange={(e) => {
+//                   const listCopy = [...objArray];
+//                   const selectedObj = listCopy[objIndex];
+//                   selectedObj.newItem = e.target.value;
+//                   setObjArray(listCopy);
+//                 }}
+//               />
+//               <button
+//                 onClick={() => {
+//                   const listCopy = [...objArray];
+//                   const selectedObj = listCopy[objIndex];
+//                   selectedObj.list = [...selectedObj.list, selectedObj.newItem];
+//                   selectedObj.newItem = "";
+//                   setObjArray(listCopy);
+//                 }}
+//               >
+//                 Add
+//               </button>
+//             </div>
 //           </div>
 //         );
 //       })}
