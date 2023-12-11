@@ -18,9 +18,10 @@ export default ({ type, list, buttons }) => {
     return (
       <li key={`listItem${i}`}>
         {e}
-        {/* {buttons.map((btnElem, btnIndex) => {
-          <button key={`button${btnIndex}`}>{btnElem}</button>;
-        })} */}
+        // FOR SOME REASON THE BUTTONS.MAP DOESN'T WORK -------
+        {buttons.map((btnText, btnIndex) => {
+          <button key={`button${btnIndex}`}>{btnText}</button>;
+        })}
       </li>
     );
   });
